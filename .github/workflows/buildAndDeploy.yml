@@ -1,22 +1,24 @@
 name: GitHub Actions Build and Deploy Demo
-on: [push]
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
-        with:
-          persist-credentials: false
-
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: |
-          npm install
-          npm run build
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.5.7
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: dist
+　　　　　　on:
+　　　　　　　push:
+　　　　　　　　branches:
+　　　　　　　　　- master
+　　　　　　jobs:
+　　　　　　　build-and-deploy:
+　　　　　　　　runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
+　　　　　　　　steps:
+　　　　　　　　- name: Checkout
+　　　　　　　　　uses: actions/checkout@master # 将代码拷贝到虚机中
+　　　　　　　　　with:
+　　　　　　　　　　persist-credentials: false
+　　　　　　　　- name: Install and Build
+　　　　　　　　　run: |
+　　　　　　　　　　npm install
+　　　　　　　　　　npm run-script build
+　　　　　　　　- name: Deploy
+　　　　　　　　　uses: JamesIves/github-pages-deploy-action@releases/v3
+　　　　　　　　　with:
+　　　　　　　　　　ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 使用刚新建的secret
+　　　　　　　　　　BRANCH: gh-pages # 存放产物的分支名称
+　　　　　　　　　　FOLDER: dist # 存放build后产物的目录
+　　　　　　　　　　BUILD_SCRIPT: npm install && npm run build # 执行的命令
