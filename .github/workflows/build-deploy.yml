@@ -5,7 +5,7 @@ name: GitHub Actions Build and Deploy Demo
 on:
   push:
     branches:
-      - master
+      - dev
 # workflow 文件的主体是jobs字段，表示要执行的一项或多项任务
 jobs:
   main:
