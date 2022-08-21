@@ -1,0 +1,11 @@
+name: NPM Version
+on:
+  workflow_dispatch:
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: nyaa8/package-version@v1
+        with:
+          path: ../../package.json 
+          follow-symlinks: false
