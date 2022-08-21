@@ -2,10 +2,11 @@ name: NPM Version
 on:
   workflow_dispatch:
 jobs:
-  publish:
+  version:
     runs-on: ubuntu-latest
     steps:
-      - uses: nyaa8/package-version@v1
+      - name: package-info
+        uses: nyaa8/package-info@v1.0.0
         with:
           path: '../../package.json'
-          follow-symlinks: true
+          follow-symlinks: 'false'
