@@ -3,6 +3,7 @@ name: GitHub Actions Build and Deploy Demo
 # on字段指定触发 workflow 的条件，通常是某些事件
 # 这里的触发条件是push代码到master的时候触发
 on:
+  workflow_dispatch:
   push:
     branches:
       - dev
